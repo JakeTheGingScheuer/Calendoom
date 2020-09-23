@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:test_driving/models/dataStore.dart';
+import 'package:test_driving/models/appState.dart';
 import 'package:test_driving/models/month.dart';
 import 'package:test_driving/widgets/calendar/day_tile_builder.dart';
 
 class MonthTile extends StatelessWidget {
 
-  DataStore calendar;
+  AppState calendar;
   int index;
   MonthTile(this.calendar, this.index);
 

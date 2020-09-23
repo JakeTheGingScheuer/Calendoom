@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_driving/models/dataStore.dart';
+import 'package:test_driving/models/appState.dart';
 import 'package:test_driving/widgets/calendar/month_tile.dart';
 
 class CalendarView extends StatelessWidget {
 
-  DataStore calendar;
+  AppState calendar;
   CalendarView(this.calendar);
   List<MonthTile> monthViews;
 
@@ -26,7 +26,7 @@ class CalendarView extends StatelessWidget {
     );
   }
 
-  List<MonthTile> monthViewBuilder(DataStore calendar){
+  List<MonthTile> monthViewBuilder(AppState calendar){
     List<MonthTile> monthViews = new List<MonthTile>();
     for(int i = 0; i < 13; i++){
       monthViews.add(MonthTile(calendar, i));

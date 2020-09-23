@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
-import 'package:test_driving/models/dataStore.dart';
+import 'package:test_driving/models/appState.dart';
 import 'package:test_driving/models/account.dart';
 import 'package:test_driving/widgets/account/account_list_view.dart';
 import 'package:test_driving/widgets/calendar/calendar_view.dart';
@@ -17,10 +17,10 @@ class CalendarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DataStore calendar = Provider.of<DataStore>(context);
-    calendar.update();
-    autoSave(calendar);
-    accounts = calendar.accounts;
+    AppState appState = Provider.of<AppState>(context);
+    appState.update();
+    autoSave(appState);
+    accounts = appState.accounts;
       return Scaffold(
         resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.black,
@@ -32,7 +32,7 @@ class CalendarScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               SizedBox(height: 20),
-              CalendarView(calendar),
+              CalendarView(appState),
               AccountCreateButton(accounts),
               AccountListView(accounts)
             ],
@@ -41,8 +41,8 @@ class CalendarScreen extends StatelessWidget {
     );
   }
 
-  autoSave(DataStore calendar){
-    deviceStorage.setItem('calendar', calendar.toJson());
+  autoSave(AppState appState){
+    deviceStorage.setItem('calendar', appState.toJson());
   }
 }
 

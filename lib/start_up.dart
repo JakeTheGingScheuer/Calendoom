@@ -3,14 +3,14 @@ import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:test_driving/models/dataStore.dart';
+import 'package:test_driving/models/appState.dart';
 import 'package:test_driving/pages/calendar_screen.dart';
 
 
 class StartUp extends StatelessWidget {
 
   final LocalStorage deviceStorage = LocalStorage('calendar_storage');
-  DataStore calendar = DataStore();
+  AppState appState = AppState();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class StartUp extends StatelessWidget {
             setCalendar(snapshot.data);
             return
               ChangeNotifierProvider(
-                builder: (context) => calendar,
+                builder: (context) => appState,
                 child: CalendarScreen(deviceStorage)
               );
           } else {
@@ -34,7 +34,7 @@ class StartUp extends StatelessWidget {
     if (dataAvailable) {
       Map<String, dynamic> json = deviceStorage.getItem('calendar');
       if(json != null){
-        calendar = DataStore.fromJson(json);
+        appState = AppState.fromJson(json);
       }
     }
   }

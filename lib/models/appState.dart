@@ -5,12 +5,12 @@ import 'package:test_driving/models/balance_calculator.dart';
 import 'package:test_driving/models/calendar_builder.dart';
 import 'month.dart';
 
-class DataStore extends ChangeNotifier {
+class AppState extends ChangeNotifier {
   List<Month> calendar;
   List<CreditCardAccount> accounts;
   BalanceCalculator balanceData;
 
-  DataStore() {
+  AppState() {
     CalendarBuilder builder = new CalendarBuilder();
     calendar = builder.getMonths();
     accounts = new List<CreditCardAccount>();
@@ -36,7 +36,7 @@ class DataStore extends ChangeNotifier {
     return dataStoreJson;
   }
 
-  DataStore.fromJson(Map<String, dynamic> json){
+  AppState.fromJson(Map<String, dynamic> json){
     accounts = getAccounts(json);
     calendar = new List<Month>();
     DateTime creationDate = DateTime.now();
